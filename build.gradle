@@ -19,6 +19,7 @@ ext {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
 	implementation 'io.pivotal.spring.cloud:spring-cloud-services-starter-config-client:3.1.1.RELEASE'
 
