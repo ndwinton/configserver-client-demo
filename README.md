@@ -1,10 +1,10 @@
-# Simple Config Server Client demo
+# Simple Config Server Client Demo
 
 This is a simple demonstration of using a Spring Cloud config server,
 and particularly a Pivotal Application Service (e.g. PWS) config server
 service.
 
-The config server service instance was created on PWS using the
+A config server service instance was created on PWS using the
 following command:
 
 ```bash
@@ -14,26 +14,27 @@ cf create-service p-config-server trial config-service \
 
 There are two endpoints exposed explicitly by the application code.
 The `/log` endpoint shows the value of the `logging.level.root` property
-which is set in the configuration loaded from the config server, and
+(which is set in the configuration loaded from the config server) and
 also the current effective logging level.
 The controller for this endpoint is annotated with `@RefreshScope` so
-can dynamincally reload its configuration.
+it can dynamically reload its configuration.
 The `/unrefreshed` endpoint contains identical code apart from the
 annotation.
 
 After starting application, both the controllers will show the same results,
 for example:
 ```text
-logging.level.root = INFO, effective = UNKNOWN
+logging.level.root = INFO, effective = INFO
 ```
 
 However, if a change is made to the properties file stored in the 
 Git repository, and a POST request is made to `/actuator/refresh` then
 the results will be different.
-Note, however, that even the "unrefreshed" results will change because
-logging levels are set globally for the entire application.
+Note, however, that even the effective log level for the "unrefreshed"
+results will change because logging levels are set globally for the
+entire application.
 
-If the `/actuator/loggers` endpoint is exposed the the built-in ability
+If the `/actuator/loggers` endpoint is exposed then the built-in ability
 to change log levels can be used, for example by posting the following
 data to `/actuators/loggers/ROOT`:
 ```json
