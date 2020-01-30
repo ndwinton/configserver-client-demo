@@ -8,14 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RefreshScope
 @RestController
-@RequestMapping("/log")
-public class LogController {
+@RequestMapping("/unrefreshed")
+public class UnrefreshedController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     private String rootLevel;
 
-    public LogController(@Value("${logging.level.root:UNSET}") String rootLevel) {
+    public UnrefreshedController(@Value("${logging.level.root:UNSET}") String rootLevel) {
         this.rootLevel = rootLevel;
     }
 
