@@ -1,0 +1,11 @@
+applications:
+- name: configserver
+  path: build/libs/configserver-1.0.jar
+  env:
+    JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'
+  instances: 1
+  memory: 1G
+  routes:
+  - route: configserver-test-ndw.cfapps.io
+  services:
+  - config-service
